@@ -84,15 +84,16 @@ def get_asset_data(ticker):
 
 
     # -------------------------------------------------
-    # PASSO 5 — Montar e retornar o DataFrame
+    # PASSO 5 — Montar e retornar o DataFrame (CORRIGIDO PARA A IA)
     # -------------------------------------------------
-    # Organiza todos os resultados em uma tabela
+    # Organiza os resultados em uma tabela com NÚMEROS PUROS (Float)
+    # Nomes das colunas sem espaços para facilitar a vida da Sarah
     resultado = pd.DataFrame({
-        "Ticker":            [ticker],
-        "Volatilidade (ao ano)": [f"{volatilidade:.2%}"],   # Ex: 35.20%
-        "Drawdown Máximo":   [f"{drawdown_maximo:.2%}"],    # Ex: -42.10%
-        "Sharpe Ratio":      [f"{sharpe:.2f}"],             # Ex: 0.85
-        "Retorno Médio Anual": [f"{retorno_medio_anual:.2%}"]
+        "Ticker": [ticker],
+        "Volatilidade_Anual": [volatilidade],
+        "Drawdown_Maximo": [drawdown_maximo],
+        "Sharpe_Ratio": [sharpe],
+        "Retorno_Medio_Anual": [retorno_medio_anual]
     })
 
     return resultado
@@ -104,7 +105,7 @@ def get_asset_data(ticker):
 if __name__ == "__main__":
 
     # Testando com diferentes tipos de ativos
-    ativos = ["PETR4.SA", "BTC-USD", "IVVB11.SA", "IVVB11.SA"]
+    ativos = ["PETR4.SA", "BTC-USD", "^IRX"]
 
     for ticker in ativos:
         print("\n" + "="*50)
